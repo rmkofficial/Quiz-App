@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <div id="title">
+      <h3>Quiz App</h3>
+    </div>
+    <div id="start-button">
+      <h1 id="start-btn">Start Quiz</h1>
+    </div>
+    <div id="question-modal" class="hide">
+      <div class="modal-content">
+        <p class="modal-question"></p>
+        <ul class="modal-options"></ul>
+        <div class="modal-button">
+          <button class="next-button">Next</button>
+          <button class="finish-button hide">Finish</button>
+        </div>
+      </div>
+    </div>
+    <div id="score-modal" class="hide">
+      <h2 class="score-content"></h2>
+      <h3 class="score-text"></h3>
+    </div>
+  </body>
+
+  <script src="app.js"></script>
+</html>
