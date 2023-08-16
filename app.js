@@ -84,11 +84,11 @@ function updateModalQuestion() {
   modalOptions.innerHTML = "";
 
   questions[currentIndex].options.forEach((option) => {
-    const li = document.createElement("li");
-    li.textContent = option;
-    modalOptions.appendChild(li);
+    const optionEl = document.createElement("li");
+    optionEl.textContent = option;
+    modalOptions.appendChild(optionEl);
 
-    li.addEventListener("click", handleOptionClick);
+    optionEl.addEventListener("click", handleOptionClick);
   });
 } // soruları modal üzerinde göstermek için
 
@@ -98,15 +98,15 @@ updateModalQuestion(); // ilk soruyu modal üzerinde göstermek için
 const optionItem = document.querySelectorAll(
   "#question-modal .modal-options li"
 );
-optionItem.forEach((li) => {
-  li.addEventListener("click", handleOptionClick);
+optionItem.forEach((optionEl) => {
+  optionEl.addEventListener("click", handleOptionClick);
 });
 // soru modalındaki seçenekleri seçmek için
 
 // kullanıcının seçtiği cevapları userAnswer dizisine eklemek için
 function handleOptionClick(e) {
-  const clickedLi = e.target;
-  const answer = clickedLi.textContent;
+  const clickedOption = e.target;
+  const answer = clickedOption.textContent;
   userAnswer[currentIndex] = answer; // Seçilen cevabı doğru indekse ekleyin
 
   if (userAnswer[currentIndex] == questionAnswer[currentIndex].answer) {
@@ -118,8 +118,8 @@ function handleOptionClick(e) {
     li.classList.add("disabled");
   });
 }
-optionItem.forEach((li) => {
-  li.addEventListener("click", handleOptionClick);
+optionItem.forEach((optionEl) => {
+  optionEl.addEventListener("click", handleOptionClick);
 }); // kullanıcının seçtiği cevapları userAnswer dizisine eklemek için
 
 const nextButton = document.querySelector("#question-modal .next-button"); // next butonu
@@ -148,27 +148,27 @@ function handleFinishButtonClick() {
   questionModal.classList.add("hide");
   scoreModal.classList.remove("hide");
   scoreModal.classList.add("visible");
-  scoreContent.textContent =
-    "Tebrikler! Skorunuz: " +
+  scoreContent.textContent = `Tebrikler Skorunuz: ${
     userAnswer.filter((answer, index) => answer == questionAnswer[index].answer)
-      .length;
+      .length
+  }`;
 
   const scoreTextElement = document.querySelector("#score-modal .score-text");
   scoreTextElement.innerHTML = ""; // skor modalı içeriğini temizlemek için
 
   questions.forEach((question, index) => {
     const questionText = question.question;
-    const userAnswerText = userAnswer[index] || "Cevaplanmadı";
+    const userAnswerText = userAnswer[index] || `Cevaplanmadı.`;
     const correctAnswerText = questionAnswer[index].answer;
 
     const questionResult = document.createElement("h1");
-    questionResult.innerHTML = "Soru  " + (index + 1) + ": " + questionText;
+    questionResult.innerHTML = `Soru ${index + 1}: ${questionText}`;
 
     const userAnswerResult = document.createElement("p");
-    userAnswerResult.innerHTML = "Verilen Cevap: " + userAnswerText;
+    userAnswerResult.innerHTML = `Verilen Cevap: ${userAnswerText}`;
 
     const correctAnswerResult = document.createElement("p");
-    correctAnswerResult.innerHTML = "Doğru Cevap: " + correctAnswerText;
+    correctAnswerResult.innerHTML = `Doğru Cevap: ${correctAnswerText}`;
 
     scoreTextElement.appendChild(questionResult);
     scoreTextElement.appendChild(userAnswerResult);
